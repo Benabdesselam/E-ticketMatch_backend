@@ -1,0 +1,62 @@
+
+type Match{
+    id:ID,
+    reference:String,
+    date:String,
+    lieu:String,
+    equipe1:String,
+    equipe2:String,
+    ticketList:[Ticket]
+}
+
+type Ticket{
+    id:ID,
+    reference:String,
+    prix:Float,
+    status:String
+    match:Match
+}
+
+
+
+
+
+input  MatchDTORequest{
+    date:String,
+    lieu:String,
+    equipe1:String,
+    equipe2:String,
+
+}
+
+type MatchDTOResponse{
+    id:ID,
+    reference:String,
+    date:String,
+    lieu:String,
+    equipe1:String,
+    equipe2:String,
+    ticketList:[Ticket]
+}
+
+
+type Query{
+    getMatchs:[MatchDTOResponse],
+    getMatchById(id:ID):MatchDTOResponse,
+
+    getTickets:[Ticket],
+    getTicketById(id:ID):Ticket
+}
+
+type Mutation{
+
+    addMatch(matchDTORequest:MatchDTORequest):MatchDTOResponse,
+    updateMatch(id:ID,matchDTORequest:MatchRequestDTO):MatchDTOResponse,
+    deleteMatch(id:ID):String
+
+
+    deleteTicket(id:ID):String
+
+
+
+}
